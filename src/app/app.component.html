@@ -1,5 +1,8 @@
-<p>
-  <mat-toolbar>
-    <span>My Application</span>
-  </mat-toolbar>
-</p>
+<mat-drawer-container class="app-wrapper">
+    <div class="app">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <div class="spacer"></div>
+        <app-footer></app-footer>
+    </div>
+</mat-drawer-container>
