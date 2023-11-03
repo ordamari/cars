@@ -1,0 +1,162 @@
+<div class="page"></div>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <span>Personal information</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <span
+                >We use artificial intelligence model That receive you the
+                perfect car match.
+            </span>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="personalInformationFormGroup">
+                <form [formGroup]="personalInformationFormGroup">
+                    <ng-template matStepLabel>Personal Information</ng-template>
+                    <div class="row">
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>First name</mat-label>
+                            <input
+                                formControlName="firstName"
+                                matInput
+                                placeholder="First name"
+                            />
+                        </mat-form-field>
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>Last name</mat-label>
+                            <input
+                                formControlName="lastName"
+                                matInput
+                                placeholder="Last name"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="fill" class="full">
+                            <mat-label>Gender</mat-label>
+                            <mat-select formControlName="gender">
+                                <mat-option
+                                    *ngFor="let gender of genders"
+                                    [value]="gender"
+                                >
+                                    {{ gender }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input
+                                formControlName="email"
+                                matInput
+                                placeholder="Email"
+                            />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="full">
+                            <mat-label>Choose a date</mat-label>
+                            <input
+                                formControlName="dateOfBirth"
+                                matInput
+                                [matDatepicker]="picker"
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>Country</mat-label>
+                            <input
+                                formControlName="country"
+                                matInput
+                                placeholder="Country"
+                            />
+                        </mat-form-field>
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>City</mat-label>
+                            <input
+                                formControlName="city"
+                                matInput
+                                placeholder="City"
+                            />
+                        </mat-form-field>
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>Address</mat-label>
+                            <input
+                                formControlName="address"
+                                matInput
+                                placeholder="Address"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <mat-card-actions align="end">
+                        <button mat-button matStepperNext>Next</button>
+                    </mat-card-actions>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="hobbiesFormGroup" label="Hobbies">
+                <form (ngSubmit)="onAddHobby()" [formGroup]="hobbiesFormGroup">
+                    <ng-template matStepLabel>Hobbies</ng-template>
+                    <mat-list class="list">
+                        <mat-list-item
+                            *ngFor="let hobby of hobbies; let i = index"
+                        >
+                            <div class="item">
+                                <span>
+                                    {{ hobby }}
+                                </span>
+                                <button
+                                    type="button"
+                                    color="warn"
+                                    mat-icon-button
+                                    (click)="onDeleteHobby(i)"
+                                >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-form-field class="full" appearance="fill">
+                        <mat-label>Add hobby</mat-label>
+                        <input
+                            formControlName="newHobby"
+                            matInput
+                            placeholder="Add hobby"
+                        />
+                    </mat-form-field>
+
+                    <mat-card-actions align="end">
+                        <button mat-button matStepperPreview>Preview</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </mat-card-actions>
+                </form>
+            </mat-step>
+            <mat-step
+                [stepControl]="carPreferenceFormGroup"
+                label="carPreferenceFormGroup"
+            >
+                <form [formGroup]="carPreferenceFormGroup">
+                    <ng-template matStepLabel>Car Preference</ng-template>
+
+                    <mat-card-actions align="end">
+                        <button mat-button matStepperPreview>Preview</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </mat-card-actions>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-card-content>
+</mat-card>
