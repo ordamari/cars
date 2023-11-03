@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
 import {
     AbstractControl,
-    FormArray,
-    FormBuilder,
+    UntypedFormArray,
+    UntypedFormBuilder,
     Validators,
 } from '@angular/forms'
 
@@ -12,7 +12,7 @@ import {
     styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-    constructor(private _formBuilder: FormBuilder) {}
+    constructor(private _formBuilder: UntypedFormBuilder) {}
     readonly genders: string[] = ['Male', 'Female', 'Other']
     readonly motorTypes: string[] = ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
 
@@ -80,13 +80,13 @@ export class LandingPageComponent {
     public onAddHobby() {
         const newHobby = this.hobbiesFormGroup.get('newHobby')?.value as string
         if (!newHobby) return
-        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as FormArray
+        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as UntypedFormArray
         hobbiesArray.push(this._formBuilder.control(newHobby))
         this.hobbiesFormGroup.get('newHobby')?.setValue('') // Reset the newHobby control
     }
 
     public onDeleteHobby(index: number) {
-        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as FormArray
+        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as UntypedFormArray
         hobbiesArray.removeAt(index)
     }
 
