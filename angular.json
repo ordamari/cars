@@ -100,9 +100,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "packageManager": "pnpm",
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "defaultProject": "cars"
 }
