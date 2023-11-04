@@ -4,16 +4,19 @@ import { LandingPageComponent } from './landing-page.component'
 import { RouterModule } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card'
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button'
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field'
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input'
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select'
+import { MatCardModule } from '@angular/material/card'
+import { MatButtonModule } from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatIconModule } from '@angular/material/icon'
 import { MatStepperModule } from '@angular/material/stepper'
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list'
+import { MatListModule } from '@angular/material/list'
+import { NgxColorsModule } from 'ngx-colors'
+import { MatSliderModule } from '@angular/material/slider'
+
 @NgModule({
     declarations: [LandingPageComponent],
     imports: [
@@ -32,6 +35,8 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
         MatIconModule,
         MatStepperModule,
         MatListModule,
+        NgxColorsModule,
+        MatSliderModule,
     ],
 })
 export class LandingPageModule {}

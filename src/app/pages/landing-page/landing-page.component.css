@@ -31,3 +31,7 @@ form .full {
     width: 100%;
     align-items: center;
 }
+
+.color-picker-container .color-picker {
+    padding-right: 0.5rem;
+}

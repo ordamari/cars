@@ -49,7 +49,7 @@ export class LandingPageComponent {
                 this.optionOfList(this.genders),
             ]),
         ],
-        dateOfBirth: ['', Validators.required],
+        dateOfBirth: [new Date(), Validators.required],
         email: [
             '',
             Validators.compose([Validators.required, Validators.email]),
@@ -65,7 +65,7 @@ export class LandingPageComponent {
     })
 
     carPreferenceFormGroup = this._formBuilder.group({
-        color: ['', this.isColor()],
+        color: ['#000000', this.isColor()],
         seats: [
             2,
             Validators.compose([
@@ -80,17 +80,48 @@ export class LandingPageComponent {
     public onAddHobby() {
         const newHobby = this.hobbiesFormGroup.get('newHobby')?.value as string
         if (!newHobby) return
-        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as UntypedFormArray
+        const hobbiesArray = this.hobbiesFormGroup.get(
+            'hobbies'
+        ) as UntypedFormArray
         hobbiesArray.push(this._formBuilder.control(newHobby))
         this.hobbiesFormGroup.get('newHobby')?.setValue('') // Reset the newHobby control
     }
 
     public onDeleteHobby(index: number) {
-        const hobbiesArray = this.hobbiesFormGroup.get('hobbies') as UntypedFormArray
+        const hobbiesArray = this.hobbiesFormGroup.get(
+            'hobbies'
+        ) as UntypedFormArray
         hobbiesArray.removeAt(index)
+    }
+
+    public checkValidations() {
+        return (
+            this.personalInformationFormGroup.valid &&
+            this.hobbiesFormGroup.valid &&
+            this.carPreferenceFormGroup.valid
+        )
+    }
+
+    public onSubmit() {
+        if (!this.checkValidations()) return
+
+        const data = {
+            ...this.personalInformationFormGroup.value,
+            ...this.carPreferenceFormGroup.value,
+            hobbies: this.hobbies,
+        }
+        console.log(data)
     }
 
     get hobbies() {
         return this.hobbiesFormGroup.get('hobbies')?.value || []
+    }
+
+    get seats() {
+        return this.carPreferenceFormGroup.get('seats')?.value || 0
+    }
+
+    get color() {
+        return this.carPreferenceFormGroup.get('color')?.value || '#000000'
     }
 }
