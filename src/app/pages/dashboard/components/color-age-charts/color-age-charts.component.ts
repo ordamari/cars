@@ -39,7 +39,6 @@ type CustomColor = { name: string; value: string }
     styleUrls: ['./color-age-charts.component.css'],
 })
 export class ColorAgeChartsComponent implements OnInit {
-    view: [number, number] = [500, 300]
     legend: boolean = false
     showLabels: boolean = false
     animations: boolean = true
