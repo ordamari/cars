@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import {
     AbstractControl,
     UntypedFormArray,
@@ -7,17 +7,19 @@ import {
 } from '@angular/forms'
 import { LocationService } from '@core/services/location-service/location.service'
 import { DataService } from '@core/services/data-service/data.service'
+import { CountService } from '@core/services/count-service/count.service'
 
 @Component({
     selector: 'app-landing-page',
     templateUrl: './landing-page.component.html',
     styleUrls: ['./landing-page.component.css'],
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
     constructor(
         private _formBuilder: UntypedFormBuilder,
         private dataService: DataService,
-        private locationService: LocationService
+        private locationService: LocationService,
+        private countService: CountService
     ) {}
     readonly genders: string[] = ['Male', 'Female', 'Other']
     readonly motorTypes: string[] = ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
@@ -84,6 +86,10 @@ export class LandingPageComponent {
         motorType: ['', this.optionOfList(this.motorTypes)],
     })
 
+    ngOnInit(): void {
+        this.countService.incrementCount()
+    }
+
     public onAddHobby() {
         const newHobby = this.hobbiesFormGroup.get('newHobby')?.value as string
         if (!newHobby) return
@@ -101,7 +107,7 @@ export class LandingPageComponent {
         hobbiesArray.removeAt(index)
     }
 
-    public checkValidations() {
+    private checkValidations() {
         return (
             this.personalInformationFormGroup.valid &&
             this.hobbiesFormGroup.valid &&
@@ -142,6 +148,7 @@ export class LandingPageComponent {
             'hobbies'
         ) as UntypedFormArray
         hobbiesArray.clear()
+        this.countService.incrementCount()
     }
 
     public async onGetLocation() {

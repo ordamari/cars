@@ -1,12 +1,5 @@
-import {
-    AfterContentInit,
-    AfterViewInit,
-    Component,
-    ElementRef,
-    OnDestroy,
-    ViewChild,
-} from '@angular/core'
-import { DataService } from 'src/app/core/services/data-service/data.service'
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
+import { DataService } from '@core/services/data-service/data.service'
 
 @Component({
     selector: 'app-dashboard',
@@ -19,13 +12,11 @@ export class DashboardComponent implements AfterViewInit {
     @ViewChild('cardRef', { read: ElementRef }) cardRef: ElementRef | null =
         null
 
-    width = 200
+    width = 300
 
     updateWidth(): void {
-        const newWidth = this.cardRef?.nativeElement.clientWidth - 50 || 500
-        console.log({ newWidth })
-
-        this.width = newWidth > 0 ? newWidth : 200
+        const newWidth = this.cardRef?.nativeElement.clientWidth - 50 || 300
+        this.width = newWidth > 0 ? newWidth : 300
     }
 
     ngAfterViewInit(): void {

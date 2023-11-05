@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Observable, map, tap } from 'rxjs'
-import { Data } from 'src/app/shared/models/data.model'
+import { Data } from '@shared/models/data.model'
 
 type AgeGroup = '0-18' | '19-30' | '31-50' | '51-70' | '71+'
 type DataItemWithAgeGroup = Data & { ageGroup: AgeGroup }
@@ -52,6 +52,7 @@ export class ColorAgeChartsComponent implements OnInit {
 
     @Input() $dataItems!: Observable<Data[]>
     @Input() width!: number
+
     $dataItemsWithAgeGroup: Observable<DataItemWithAgeGroup[]> =
         new Observable()
     $chartData: Observable<ChartData[]> = new Observable()

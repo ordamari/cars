@@ -1,8 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ensureModuleLoadedOnce } from './guards/ensureModuleLoadedOnce.guard'
-import { HeaderComponent } from './components/header/header.component'
-import { FooterComponent } from './components/footer/footer.component'
+import { ensureModuleLoadedOnce } from '@core/guards/ensureModuleLoadedOnce.guard'
+import { HeaderComponent } from '@core/components/header/header.component'
+import { FooterComponent } from '@core/components/footer/footer.component'
 import { RouterModule } from '@angular/router'
 
 import { MatToolbarModule } from '@angular/material/toolbar'

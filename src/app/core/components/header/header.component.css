@@ -21,3 +21,9 @@
 a.active {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+@media (max-width: 450px) {
+    .wrapper {
+        grid-template-columns: 0px 1fr 0px;
+    }
+}

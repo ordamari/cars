@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core'
-import {
-    Data,
-    dataItemsSchema,
-    dataSchema,
-} from 'src/app/shared/models/data.model'
+import { Data, dataItemsSchema, dataSchema } from '@shared/models/data.model'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { initialData } from 'src/assets/data/initial-data'
+import { initialData } from '@assets/data/initial-data'
 
 @Injectable({
     providedIn: 'root',
@@ -13,7 +9,7 @@ import { initialData } from 'src/assets/data/initial-data'
 export class DataService {
     constructor() {}
     private readonly LOCAL_STORAGE_KEY = 'DATA_ITEMS_OR_DAMARI'
-    dataItems: Data[] = this.getInitialDataItems()
+    private dataItems: Data[] = this.getInitialDataItems()
     private dataItemsSubject = new BehaviorSubject<Data[]>(this.dataItems)
     public $dataItems: Observable<Data[]> = this.dataItemsSubject.asObservable()
 
@@ -45,7 +41,6 @@ export class DataService {
 
     public addDataItem(dataItem: unknown): void {
         const parsed = dataSchema.safeParse(dataItem)
-        console.log({ dataItem, parsed })
         if (!parsed.success) throw new Error('Invalid data item')
         this.dataItems.push(parsed.data)
         this.saveDataItems(this.dataItems)
