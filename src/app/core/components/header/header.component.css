@@ -36,4 +36,8 @@ a.active {
     .wrapper {
         grid-template-columns: 0px 1fr 0px;
     }
+
+    .logo-container span {
+        display: none;
+    }
 }
