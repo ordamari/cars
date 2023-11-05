@@ -2,7 +2,10 @@
     <mat-toolbar color="primary">
         <div class="wrapper">
             <div class="container">
-                <span>My App</span>
+                <div class="logo-container">
+                    <img class="logo" [src]="imageSrc" alt="logo" />
+                    <span>Automaichi</span>
+                </div>
                 <span class="spacer"></span>
                 <a routerLinkActive="active" mat-button routerLink="/home"
                     >Home</a

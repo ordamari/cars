@@ -12,6 +12,7 @@
     display: flex;
     width: 100%;
     gap: 1rem;
+    align-items: center;
 }
 
 .spacer {
@@ -20,6 +21,15 @@
 
 a.active {
     background-color: rgba(255, 255, 255, 0.3);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 3.5rem;
 }
 
 @media (max-width: 450px) {
