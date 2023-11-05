@@ -1,27 +1,67 @@
-# Cars
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Images](#images)
+* [Features](#features)
+* [Setup](#setup)
+ 
+## General info
+This is a simple and responsive car match app developed using Angular. It allows potential car buyers to find their perfect car match based on their personal preferences. The application consists of two main views: the Landing Page and the Dashboard.<br/>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+At the beginning of the data setup process for the application, I populate the local storage with mock data.<br/>
 
-## Development server
+[Link to preview project](https://ordamari.github.io/cars)
+## Technologies
+The project incorporates the following technologies:
+ 
+* Angular
+* Angular Materials 
+* Docker
+* Zod
+* TypeScript
+* ngrx
+* ngx-charts
+ 
+## Images
+![image](https://github.com/ordamari/cars/assets/63239238/c127f8d5-bdff-44b6-97ca-72d54168fb11)
+![image2](https://github.com/ordamari/cars/assets/63239238/fca56bdc-0637-4990-934f-89081da685b7)
+![image3](https://github.com/ordamari/cars/assets/63239238/a6dc81d4-4b57-4d80-b991-6b4c40b47f3f)
+![image4](https://github.com/ordamari/cars/assets/63239238/5d68b196-cb11-4625-b365-1178bc0e7290)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ 
+## Features
+The E-Commerce app offers the following features:
+ 
+* Multi steps form- form that split to three steps, the user cant go to the next step without fill currectlly the current step.
 
-## Code scaffolding
+* Chart: The app includes a chart to visualize satistics about the resaults of the forms.
+ 
+* Favorites Management: Users can save their favorite cities and quickly access them on the favorites page. Each favorite location includes an ID, name. Clicking on a favorite location navigates to the main screen, showing detailed weather information for that location.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Responsive Design: The app is designed to be responsive, ensuring an optimal user experience across various devices and screen sizes. It utilizes flexbox layouts to enhance visual appeal and maintain usability.
+   
+* Default Location: in the form have a part that the user need to feal his full address, have a button that using geolocation and API get location city and country and fill it in the form.
+ 
+* Zod Validation: The app uses Zod, a powerful validation library, to validate data retrieved from the localstorage. This ensures that the data is properly structured and conforms to the expected format before being displayed to the user.
+ 
+* Content Security Policy (CSP): The app implements a Content Security Policy to protect against cross-site scripting (XSS) attacks. By setting strict policies, the app reduces the risk of malicious scripts being injected into the application.
+ 
+## Setup
+ 
+### Docker compose for EZ setup
+### App will be serve at http://localhost:3031 - you can change the port in the docker compose if you like 
+ 
+```
+version: '3.8'
+ 
+services:
+    web-app:
+        image: 'ordamari/cars:latest'
+        ports:
+            - '3031:80'
+```
+ 
+### Local run
+`pnpm i && pnpm start`
+ 
+Note: npm should work the same.
