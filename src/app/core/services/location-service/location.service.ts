@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { ZodUtils } from '../../utils/zod.utils'
-import { Location, locationSchema } from 'src/app/shared/models/location.model'
+import { ZodUtils } from '@core/utils/zod.utils'
 import { environment } from '@env/environment'
+import { Location, locationSchema } from '@shared/models/location.model'
+import { firstValueFrom } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
 })
-export class LocationServiceService {
+export class LocationService {
     private BASE_URL = 'https://dataservice.accuweather.com/'
     constructor(private http: HttpClient, private zodUtils: ZodUtils) {}
 
@@ -41,8 +42,12 @@ export class LocationServiceService {
         return $res
     }
 
-    public async getLocation() {
+    public async getLocation(): Promise<Location> {
         const coords = await this.getLocationCoords()
-        return this.getLocationByGeolocation(coords.latitude, coords.longitude)
+        const $res = await this.getLocationByGeolocation(
+            coords.latitude,
+            coords.longitude
+        )
+        return firstValueFrom($res)
     }
 }
