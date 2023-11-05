@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatDividerModule } from '@angular/material/divider'
+import { ToastrModule } from 'ngx-toastr'
 
 @NgModule({
     declarations: [HeaderComponent, FooterComponent],
@@ -19,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider'
         MatIconModule,
         MatButtonModule,
         MatDividerModule,
+        ToastrModule.forRoot(),
     ],
     exports: [HeaderComponent, FooterComponent],
 })

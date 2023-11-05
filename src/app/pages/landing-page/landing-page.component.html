@@ -32,7 +32,12 @@
             <mat-stepper [linear]="true" #stepper>
                 <mat-step [stepControl]="personalInformationFormGroup">
                     <form [formGroup]="personalInformationFormGroup">
-                        <ng-template matStepLabel>Personal</ng-template>
+                        <ng-template matStepLabel>
+                            <div class="step">
+                                <mat-icon>info</mat-icon>
+                                <span>Information</span>
+                            </div>
+                        </ng-template>
                         <div class="row">
                             <mat-form-field class="full" appearance="fill">
                                 <mat-label>First name</mat-label>
@@ -41,6 +46,10 @@
                                     matInput
                                     placeholder="First name"
                                 />
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >must contain at least 2 characters
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="full" appearance="fill">
                                 <mat-label>Last name</mat-label>
@@ -49,6 +58,10 @@
                                     matInput
                                     placeholder="Last name"
                                 />
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >must contain at least 2 characters
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="row">
@@ -62,6 +75,10 @@
                                         {{ gender }}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >Required
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="full" appearance="fill">
                                 <mat-label>Email</mat-label>
@@ -70,6 +87,10 @@
                                     matInput
                                     placeholder="Email"
                                 />
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >Invalid email
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="fill" class="full">
                                 <mat-label>Choose a date</mat-label>
@@ -82,6 +103,10 @@
                                     matSuffix
                                     [for]="picker"
                                 ></mat-datepicker-toggle>
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >Invalid email
+                                </mat-error>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
                         </div>
@@ -93,6 +118,19 @@
                                     matInput
                                     placeholder="Country"
                                 />
+                                <button
+                                    mat-icon-button
+                                    matSuffix
+                                    (click)="onGetLocation()"
+                                    type="button"
+                                    color="primary"
+                                >
+                                    <mat-icon>location_on</mat-icon>
+                                </button>
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >must contain at least 2 characters
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="full" appearance="fill">
                                 <mat-label>City</mat-label>
@@ -101,6 +139,10 @@
                                     matInput
                                     placeholder="City"
                                 />
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >must contain at least 2 characters
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="full" appearance="fill">
                                 <mat-label>Address</mat-label>
@@ -109,6 +151,10 @@
                                     matInput
                                     placeholder="Address"
                                 />
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >must contain at least 2 characters
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <mat-card-actions align="end">
@@ -123,7 +169,12 @@
                         (ngSubmit)="onAddHobby()"
                         [formGroup]="hobbiesFormGroup"
                     >
-                        <ng-template matStepLabel>Hobbies</ng-template>
+                        <ng-template matStepLabel>
+                            <div class="step">
+                                <mat-icon>person</mat-icon>
+                                <span>Hobbies</span>
+                            </div>
+                        </ng-template>
                         <mat-list class="list">
                             <mat-list-item
                                 *ngFor="let hobby of hobbies; let i = index"
@@ -167,7 +218,12 @@
                     label="carPreferenceFormGroup"
                 >
                     <form [formGroup]="carPreferenceFormGroup">
-                        <ng-template matStepLabel>Preference</ng-template>
+                        <ng-template matStepLabel>
+                            <div class="step">
+                                <mat-icon>favorite</mat-icon>
+                                <span>Preference</span>
+                            </div>
+                        </ng-template>
                         <div class="color-picker-container">
                             <div class="row">
                                 <mat-form-field class="full">
@@ -185,6 +241,12 @@
                                             class="color-picker"
                                         ></ngx-colors>
                                     </button>
+                                    <mat-error
+                                        *ngIf="
+                                            personalInformationFormGroup.invalid
+                                        "
+                                        >must be a hex color
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -199,6 +261,10 @@
                                         {{ motorType }}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error
+                                    *ngIf="personalInformationFormGroup.invalid"
+                                    >Required
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="row">
@@ -212,7 +278,13 @@
                                 <mat-icon matSuffix
                                     >airline_seat_recline_extra</mat-icon
                                 >
-                                <mat-hint> Number between 2 to 7</mat-hint>
+                                <mat-hint
+                                    *ngIf="
+                                        !personalInformationFormGroup.invalid
+                                    "
+                                >
+                                    Number between 2 to 7
+                                </mat-hint>
                             </mat-form-field>
                         </div>
 

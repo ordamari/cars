@@ -5,7 +5,8 @@ import {
     UntypedFormBuilder,
     Validators,
 } from '@angular/forms'
-import { DataService } from 'src/app/core/services/data-service/data.service'
+import { LocationService } from '@core/services/location-service/location.service'
+import { DataService } from '@core/services/data-service/data.service'
 
 @Component({
     selector: 'app-landing-page',
@@ -15,7 +16,8 @@ import { DataService } from 'src/app/core/services/data-service/data.service'
 export class LandingPageComponent {
     constructor(
         private _formBuilder: UntypedFormBuilder,
-        private dataService: DataService
+        private dataService: DataService,
+        private locationService: LocationService
     ) {}
     readonly genders: string[] = ['Male', 'Female', 'Other']
     readonly motorTypes: string[] = ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
@@ -45,8 +47,8 @@ export class LandingPageComponent {
     }
 
     personalInformationFormGroup = this._formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        firstName: ['', Validators.minLength(2)],
+        lastName: ['', Validators.minLength(2)],
         gender: [
             '',
             Validators.compose([
@@ -59,9 +61,9 @@ export class LandingPageComponent {
             '',
             Validators.compose([Validators.required, Validators.email]),
         ],
-        city: ['', Validators.required],
-        country: ['', Validators.required],
-        address: ['', Validators.required],
+        city: ['', Validators.minLength(2)],
+        country: ['', Validators.minLength(2)],
+        address: ['', Validators.minLength(2)],
     })
 
     hobbiesFormGroup = this._formBuilder.group({
@@ -140,6 +142,20 @@ export class LandingPageComponent {
             'hobbies'
         ) as UntypedFormArray
         hobbiesArray.clear()
+    }
+
+    public async onGetLocation() {
+        try {
+            const location = await this.locationService.getLocation()
+            this.personalInformationFormGroup
+                .get('city')
+                ?.setValue(location.LocalizedName)
+            this.personalInformationFormGroup
+                .get('country')
+                ?.setValue(location.Country.LocalizedName)
+        } catch {
+            console.log('error')
+        }
     }
 
     get hobbies() {

@@ -30,7 +30,6 @@ export class DataService {
                 })
             }
             const parsed = dataItemsSchema.safeParse(dataItems)
-            console.log({ parsed })
             if (!parsed.success) throw new Error('Invalid data items')
 
             return parsed.data

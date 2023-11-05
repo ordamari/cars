@@ -11,6 +11,12 @@
 .page {
     display: grid;
     grid-template-columns:
-        minmax(20px, 1fr) minmax(auto, 1400px)
-        minmax(20px, 1fr);
+        minmax(1rem, 1fr) minmax(auto, 1400px)
+        minmax(1rem, 1fr);
+}
+
+@media (max-width: 450px) {
+    .page {
+        grid-template-columns: 0px 1fr 0px;
+    }
 }

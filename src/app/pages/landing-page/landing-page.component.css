@@ -9,7 +9,7 @@ form {
 form .full {
     box-sizing: border-box;
     flex-grow: 1;
-    min-width: 300px;
+    min-width: 100px;
 }
 
 .row {
@@ -34,4 +34,32 @@ form .full {
 
 .color-picker-container .color-picker {
     padding-right: 0.5rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.step span {
+    display: none;
+}
+
+@media (max-width: 450px) {
+    ::ng-deep .mat-step-label {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .step span {
+        display: inline-block;
+    }
+
+    form .full {
+        box-sizing: border-box;
+        flex-grow: 1;
+        min-width: 300px;
+    }
 }

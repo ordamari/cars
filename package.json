@@ -24,6 +24,7 @@
     "@angular/router": "^16.2.12",
     "@swimlane/ngx-charts": "20.4.1",
     "ngx-colors": "3.5.2",
+    "ngx-toastr": "17.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zod": "3.22.4",
