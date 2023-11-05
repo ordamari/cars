@@ -1,1 +1,47 @@
-<p>dashboard works!</p>
+<div (window:resize)="updateWidth()"></div>
+<div class="dashboard">
+    <mat-card #cardRef>
+        <mat-card-header>
+            <mat-card-title>Color by age group</mat-card-title>
+            <mat-card-subtitle
+                >Area chart that show for every age group the selected
+                colors</mat-card-subtitle
+            >
+        </mat-card-header>
+        <mat-card-content>
+            <app-color-age-charts
+                [width]="width"
+                [$dataItems]="$dataItems"
+            ></app-color-age-charts>
+        </mat-card-content>
+    </mat-card>
+    <mat-card #cardRef>
+        <mat-card-header>
+            <mat-card-title>Motor Type</mat-card-title>
+            <mat-card-subtitle
+                >Pie chart of the ratio between the motor
+                types</mat-card-subtitle
+            >
+        </mat-card-header>
+        <mat-card-content>
+            <app-engine-type-charts
+                [width]="width"
+                [$dataItems]="$dataItems"
+            ></app-engine-type-charts>
+        </mat-card-content>
+    </mat-card>
+    <mat-card #cardRef>
+        <mat-card-header>
+            <mat-card-title>Hobbies</mat-card-title>
+            <mat-card-subtitle
+                >Bar chart that show hobby popularity</mat-card-subtitle
+            >
+        </mat-card-header>
+        <mat-card-content>
+            <app-hobbies-charts
+                [width]="width"
+                [$dataItems]="$dataItems"
+            ></app-hobbies-charts>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { CoreModule } from './core/core.module'
 
 import { MatSidenavModule } from '@angular/material/sidenav'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
     declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
         BrowserAnimationsModule,
         CoreModule,
         MatSidenavModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

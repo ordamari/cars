@@ -1,0 +1,9 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+::ng-deep .ngx-charts text {
+    fill: #fff !important;
+}

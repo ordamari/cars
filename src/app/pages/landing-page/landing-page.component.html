@@ -1,208 +1,236 @@
-<div class="page"></div>
-<mat-card>
+<mat-card *ngIf="isSended; else notSended">
     <mat-card-header>
         <mat-card-title>
-            <span>Enter your information</span>
+            <span>Thanks for filling the form</span>
         </mat-card-title>
         <mat-card-subtitle>
             <span
-                >We use artificial intelligence model That receive you the
-                perfect car match.
+                >Your request was sent and a mail with your match will be sent
+                to you.
             </span>
         </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-        <mat-stepper [linear]="true" #stepper>
-            <mat-step [stepControl]="personalInformationFormGroup">
-                <form [formGroup]="personalInformationFormGroup">
-                    <ng-template matStepLabel>Personal</ng-template>
-                    <div class="row">
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>First name</mat-label>
-                            <input
-                                formControlName="firstName"
-                                matInput
-                                placeholder="First name"
-                            />
-                        </mat-form-field>
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>Last name</mat-label>
-                            <input
-                                formControlName="lastName"
-                                matInput
-                                placeholder="Last name"
-                            />
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field appearance="fill" class="full">
-                            <mat-label>Gender</mat-label>
-                            <mat-select formControlName="gender">
-                                <mat-option
-                                    *ngFor="let gender of genders"
-                                    [value]="gender"
-                                >
-                                    {{ gender }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>Email</mat-label>
-                            <input
-                                formControlName="email"
-                                matInput
-                                placeholder="Email"
-                            />
-                        </mat-form-field>
-                        <mat-form-field appearance="fill" class="full">
-                            <mat-label>Choose a date</mat-label>
-                            <input
-                                formControlName="dateOfBirth"
-                                matInput
-                                [matDatepicker]="picker"
-                            />
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="picker"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>Country</mat-label>
-                            <input
-                                formControlName="country"
-                                matInput
-                                placeholder="Country"
-                            />
-                        </mat-form-field>
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>City</mat-label>
-                            <input
-                                formControlName="city"
-                                matInput
-                                placeholder="City"
-                            />
-                        </mat-form-field>
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>Address</mat-label>
-                            <input
-                                formControlName="address"
-                                matInput
-                                placeholder="Address"
-                            />
-                        </mat-form-field>
-                    </div>
-                    <mat-card-actions align="end">
-                        <button color="primary" mat-button matStepperNext>
-                            Next
-                        </button>
-                    </mat-card-actions>
-                </form>
-            </mat-step>
-            <mat-step [stepControl]="hobbiesFormGroup" label="Hobbies">
-                <form (ngSubmit)="onAddHobby()" [formGroup]="hobbiesFormGroup">
-                    <ng-template matStepLabel>Hobbies</ng-template>
-                    <mat-list class="list">
-                        <mat-list-item
-                            *ngFor="let hobby of hobbies; let i = index"
-                        >
-                            <div class="item">
-                                <span>
-                                    {{ hobby }}
-                                </span>
-                                <button
-                                    type="button"
-                                    color="warn"
-                                    mat-icon-button
-                                    (click)="onDeleteHobby(i)"
-                                >
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </div>
-                        </mat-list-item>
-                    </mat-list>
-                    <mat-form-field class="full" appearance="fill">
-                        <mat-label>Add hobby</mat-label>
-                        <input
-                            formControlName="newHobby"
-                            matInput
-                            placeholder="Add hobby"
-                        />
-                    </mat-form-field>
+    <mat-card-actions align="end">
+        <button (click)="onReset()" mat-button>Send Another</button>
+    </mat-card-actions>
+</mat-card>
 
-                    <mat-card-actions align="end">
-                        <button mat-button matStepperPreview>Preview</button>
-                        <button color="primary" mat-button matStepperNext>
-                            Next
-                        </button>
-                    </mat-card-actions>
-                </form>
-            </mat-step>
-            <mat-step
-                [stepControl]="carPreferenceFormGroup"
-                label="carPreferenceFormGroup"
-            >
-                <form [formGroup]="carPreferenceFormGroup">
-                    <ng-template matStepLabel>Preference</ng-template>
-                    <div class="color-picker-container">
+<ng-template #notSended>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <span>Enter your information</span>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <span
+                    >We use artificial intelligence model That receive you the
+                    perfect car match.
+                </span>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-stepper [linear]="true" #stepper>
+                <mat-step [stepControl]="personalInformationFormGroup">
+                    <form [formGroup]="personalInformationFormGroup">
+                        <ng-template matStepLabel>Personal</ng-template>
                         <div class="row">
-                            <mat-form-field class="full">
-                                <mat-label>Color</mat-label>
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>First name</mat-label>
                                 <input
+                                    formControlName="firstName"
                                     matInput
-                                    readonly
-                                    placeholder="Color"
-                                    [value]="color"
+                                    placeholder="First name"
                                 />
-                                <button mat-button matSuffix>
-                                    <ngx-colors
-                                        ngx-colors-trigger
-                                        formControlName="color"
-                                        class="color-picker"
-                                    ></ngx-colors>
-                                </button>
+                            </mat-form-field>
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>Last name</mat-label>
+                                <input
+                                    formControlName="lastName"
+                                    matInput
+                                    placeholder="Last name"
+                                />
                             </mat-form-field>
                         </div>
-                    </div>
-                    <div class="row">
-                        <mat-form-field appearance="fill" class="full">
-                            <mat-label>Motor Type</mat-label>
-                            <mat-select formControlName="motorType">
-                                <mat-option
-                                    *ngFor="let motorType of motorTypes"
-                                    [value]="motorType"
-                                >
-                                    {{ motorType }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field class="full" appearance="fill">
-                            <mat-label>Seats number</mat-label>
-                            <input
-                                formControlName="seats"
-                                matInput
-                                placeholder="Seats number"
-                            />
-                            <mat-icon matSuffix
-                                >airline_seat_recline_extra</mat-icon
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="full">
+                                <mat-label>Gender</mat-label>
+                                <mat-select formControlName="gender">
+                                    <mat-option
+                                        *ngFor="let gender of genders"
+                                        [value]="gender"
+                                    >
+                                        {{ gender }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>Email</mat-label>
+                                <input
+                                    formControlName="email"
+                                    matInput
+                                    placeholder="Email"
+                                />
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="full">
+                                <mat-label>Choose a date</mat-label>
+                                <input
+                                    formControlName="dateOfBirth"
+                                    matInput
+                                    [matDatepicker]="picker"
+                                />
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="picker"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>Country</mat-label>
+                                <input
+                                    formControlName="country"
+                                    matInput
+                                    placeholder="Country"
+                                />
+                            </mat-form-field>
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>City</mat-label>
+                                <input
+                                    formControlName="city"
+                                    matInput
+                                    placeholder="City"
+                                />
+                            </mat-form-field>
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>Address</mat-label>
+                                <input
+                                    formControlName="address"
+                                    matInput
+                                    placeholder="Address"
+                                />
+                            </mat-form-field>
+                        </div>
+                        <mat-card-actions align="end">
+                            <button color="primary" mat-button matStepperNext>
+                                Next
+                            </button>
+                        </mat-card-actions>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="hobbiesFormGroup" label="Hobbies">
+                    <form
+                        (ngSubmit)="onAddHobby()"
+                        [formGroup]="hobbiesFormGroup"
+                    >
+                        <ng-template matStepLabel>Hobbies</ng-template>
+                        <mat-list class="list">
+                            <mat-list-item
+                                *ngFor="let hobby of hobbies; let i = index"
                             >
-                            <mat-hint> Number between 2 to 7</mat-hint>
+                                <div class="item">
+                                    <span>
+                                        {{ hobby }}
+                                    </span>
+                                    <button
+                                        type="button"
+                                        color="warn"
+                                        mat-icon-button
+                                        (click)="onDeleteHobby(i)"
+                                    >
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-list-item>
+                        </mat-list>
+                        <mat-form-field class="full" appearance="fill">
+                            <mat-label>Add hobby</mat-label>
+                            <input
+                                formControlName="newHobby"
+                                matInput
+                                placeholder="Add hobby"
+                            />
                         </mat-form-field>
-                    </div>
 
-                    <mat-card-actions align="end">
-                        <button mat-button matStepperPreview>Preview</button>
-                        <button (click)="onSubmit()" color="primary" mat-button>
-                            Send the details
-                        </button>
-                    </mat-card-actions>
-                </form>
-            </mat-step>
-        </mat-stepper>
-    </mat-card-content>
-</mat-card>
-{{ seats }}
+                        <mat-card-actions align="end">
+                            <button mat-button matStepperPreview>
+                                Preview
+                            </button>
+                            <button color="primary" mat-button matStepperNext>
+                                Next
+                            </button>
+                        </mat-card-actions>
+                    </form>
+                </mat-step>
+                <mat-step
+                    [stepControl]="carPreferenceFormGroup"
+                    label="carPreferenceFormGroup"
+                >
+                    <form [formGroup]="carPreferenceFormGroup">
+                        <ng-template matStepLabel>Preference</ng-template>
+                        <div class="color-picker-container">
+                            <div class="row">
+                                <mat-form-field class="full">
+                                    <mat-label>Color</mat-label>
+                                    <input
+                                        matInput
+                                        readonly
+                                        placeholder="Color"
+                                        [value]="color"
+                                    />
+                                    <button mat-button matSuffix>
+                                        <ngx-colors
+                                            ngx-colors-trigger
+                                            formControlName="color"
+                                            class="color-picker"
+                                        ></ngx-colors>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <mat-form-field appearance="fill" class="full">
+                                <mat-label>Motor Type</mat-label>
+                                <mat-select formControlName="motorType">
+                                    <mat-option
+                                        *ngFor="let motorType of motorTypes"
+                                        [value]="motorType"
+                                    >
+                                        {{ motorType }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="full" appearance="fill">
+                                <mat-label>Seats number</mat-label>
+                                <input
+                                    formControlName="seats"
+                                    matInput
+                                    placeholder="Seats number"
+                                />
+                                <mat-icon matSuffix
+                                    >airline_seat_recline_extra</mat-icon
+                                >
+                                <mat-hint> Number between 2 to 7</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-card-actions align="end">
+                            <button mat-button matStepperPreview>
+                                Preview
+                            </button>
+                            <button
+                                (click)="onSubmit()"
+                                color="primary"
+                                mat-button
+                            >
+                                Send the details
+                            </button>
+                        </mat-card-actions>
+                    </form>
+                </mat-step>
+            </mat-stepper>
+        </mat-card-content>
+    </mat-card>
+</ng-template>

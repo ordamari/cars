@@ -1,3 +1,23 @@
+.wrapper {
+    display: grid;
+    grid-template-columns:
+        minmax(20px, 1fr) minmax(auto, 1400px)
+        minmax(20px, 1fr);
+    width: 100%;
+}
+
+.container {
+    box-sizing: border-box;
+    grid-column: 2;
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
 .spacer {
     flex: 1 1 auto;
+}
+
+a.active {
+    background-color: rgba(255, 255, 255, 0.3);
 }

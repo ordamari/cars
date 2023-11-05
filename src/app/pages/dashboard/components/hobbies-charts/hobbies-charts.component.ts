@@ -17,14 +17,14 @@ export class HobbiesChartsComponent implements OnInit {
     @Input() width!: number
 
     // options
-    showXAxis = true
+    showXAxis = false
     showYAxis = true
     gradient = false
-    showLegend = true
+    showLegend = false
     showXAxisLabel = true
-    xAxisLabel = 'Country'
+    xAxisLabel = ''
     showYAxisLabel = true
-    yAxisLabel = 'Population'
+    yAxisLabel = ''
 
     $chartData: Observable<ChartData[]> = new Observable()
 

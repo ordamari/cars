@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button'
+import { MatButtonModule } from '@angular/material/button'
 import { MatDividerModule } from '@angular/material/divider'
 
 @NgModule({

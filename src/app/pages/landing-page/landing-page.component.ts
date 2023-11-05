@@ -5,6 +5,7 @@ import {
     UntypedFormBuilder,
     Validators,
 } from '@angular/forms'
+import { DataService } from 'src/app/core/services/data-service/data.service'
 
 @Component({
     selector: 'app-landing-page',
@@ -12,9 +13,13 @@ import {
     styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-    constructor(private _formBuilder: UntypedFormBuilder) {}
+    constructor(
+        private _formBuilder: UntypedFormBuilder,
+        private dataService: DataService
+    ) {}
     readonly genders: string[] = ['Male', 'Female', 'Other']
     readonly motorTypes: string[] = ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
+    isSended = false
 
     private minLengthArray(min: number) {
         return (c: AbstractControl): { [key: string]: any } | null => {
@@ -103,22 +108,42 @@ export class LandingPageComponent {
     }
 
     public onSubmit() {
-        if (!this.checkValidations()) return
-
-        const data = {
-            ...this.personalInformationFormGroup.value,
-            ...this.carPreferenceFormGroup.value,
-            hobbies: this.hobbies,
+        try {
+            if (!this.checkValidations()) throw new Error('Invalid form')
+            const data = {
+                ...this.personalInformationFormGroup.value,
+                ...this.carPreferenceFormGroup.value,
+                seats: +this.carPreferenceFormGroup.get('seats')?.value || 0,
+                hobbies: this.hobbies,
+            } as unknown
+            this.dataService.addDataItem(data)
+            this.isSended = true
+        } catch {
+            console.log('error')
         }
-        console.log(data)
+    }
+
+    public onReset() {
+        this.personalInformationFormGroup.reset({ dateOfBirth: new Date() })
+        this.hobbiesFormGroup.reset()
+        this.hobbiesFormGroup.reset({
+            hobbies: [],
+            newHobby: '',
+        })
+        this.carPreferenceFormGroup.reset({
+            color: '#000000',
+            seats: 2,
+            motorType: '',
+        })
+        this.isSended = false
+        const hobbiesArray = this.hobbiesFormGroup.get(
+            'hobbies'
+        ) as UntypedFormArray
+        hobbiesArray.clear()
     }
 
     get hobbies() {
         return this.hobbiesFormGroup.get('hobbies')?.value || []
-    }
-
-    get seats() {
-        return this.carPreferenceFormGroup.get('seats')?.value || 0
     }
 
     get color() {

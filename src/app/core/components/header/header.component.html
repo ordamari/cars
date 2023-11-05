@@ -1,8 +1,16 @@
 <p>
     <mat-toolbar color="primary">
-        <span>My App</span>
-        <span class="spacer"></span>
-        <a mat-button routerLink="/home">Home</a>
-        <a mat-button routerLink="/dashboard">Dashboard</a>
+        <div class="wrapper">
+            <div class="container">
+                <span>My App</span>
+                <span class="spacer"></span>
+                <a routerLinkActive="active" mat-button routerLink="/home"
+                    >Home</a
+                >
+                <a routerLinkActive="active" mat-button routerLink="/dashboard"
+                    >Dashboard</a
+                >
+            </div>
+        </div>
     </mat-toolbar>
 </p>
