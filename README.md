@@ -30,7 +30,7 @@ The project incorporates the following technologies:
 
  
 ## Features
-The E-Commerce app offers the following features:
+The Car match app offers the following features:
  
 * Multi steps form- form that split to three steps, the user cant go to the next step without fill currectlly the current step.
 
