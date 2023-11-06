@@ -113,7 +113,6 @@ export class ColorAgeChartsComponent implements OnInit {
 
     ngOnInit(): void {
         this.$dataItemsWithAgeGroup = this.$dataItems.pipe(
-            tap((dataItems) => console.log(dataItems)),
             map((dataItems) =>
                 dataItems.map((dataItem) => ({
                     ...dataItem,

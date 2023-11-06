@@ -49,8 +49,14 @@ export class LandingPageComponent implements OnInit {
     }
 
     personalInformationFormGroup = this._formBuilder.group({
-        firstName: ['', Validators.minLength(2)],
-        lastName: ['', Validators.minLength(2)],
+        firstName: [
+            '',
+            Validators.compose([Validators.required, Validators.minLength(2)]),
+        ],
+        lastName: [
+            '',
+            Validators.compose([Validators.required, Validators.minLength(2)]),
+        ],
         gender: [
             '',
             Validators.compose([
@@ -63,9 +69,18 @@ export class LandingPageComponent implements OnInit {
             '',
             Validators.compose([Validators.required, Validators.email]),
         ],
-        city: ['', Validators.minLength(2)],
-        country: ['', Validators.minLength(2)],
-        address: ['', Validators.minLength(2)],
+        city: [
+            '',
+            Validators.compose([Validators.required, Validators.minLength(2)]),
+        ],
+        country: [
+            '',
+            Validators.compose([Validators.required, Validators.minLength(2)]),
+        ],
+        address: [
+            '',
+            Validators.compose([Validators.required, Validators.minLength(2)]),
+        ],
     })
 
     hobbiesFormGroup = this._formBuilder.group({
@@ -126,9 +141,7 @@ export class LandingPageComponent implements OnInit {
             } as unknown
             this.dataService.addDataItem(data)
             this.isSended = true
-        } catch {
-            console.log('error')
-        }
+        } catch {}
     }
 
     public onReset() {
@@ -160,9 +173,7 @@ export class LandingPageComponent implements OnInit {
             this.personalInformationFormGroup
                 .get('country')
                 ?.setValue(location.Country.LocalizedName)
-        } catch {
-            console.log('error')
-        }
+        } catch {}
     }
 
     get hobbies() {

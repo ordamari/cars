@@ -6,15 +6,16 @@ WORKDIR /usr/local/app
 
 RUN npm install -g pnpm@7.9.0
 
+COPY ./package.json         ./
+COPY ./pnpm-lock.yaml       ./
+RUN pnpm install --ignore-scripts --frozen-lockfile
+
 COPY ./tsconfig.json        ./
 COPY ./tsconfig.app.json    ./
 COPY ./tsconfig.spec.json   ./
 COPY ./angular.json          ./
-COPY ./package.json         ./
-COPY ./pnpm-lock.yaml       ./
 COPY ./src                  ./src
 
-RUN pnpm install --ignore-scripts --frozen-lockfile
 RUN pnpm build
 
 # run app with nginx server

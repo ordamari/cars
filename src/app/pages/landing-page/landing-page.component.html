@@ -204,10 +204,15 @@
                         </mat-form-field>
 
                         <mat-card-actions align="end">
-                            <button mat-button matStepperPreview>
-                                Preview
+                            <button mat-button matStepperPrevious>
+                                Previous
                             </button>
-                            <button color="primary" mat-button matStepperNext>
+                            <button
+                                type="button"
+                                color="primary"
+                                mat-button
+                                matStepperNext
+                            >
                                 Next
                             </button>
                         </mat-card-actions>
@@ -289,8 +294,8 @@
                         </div>
 
                         <mat-card-actions align="end">
-                            <button mat-button matStepperPreview>
-                                Preview
+                            <button mat-button matStepperPrevious>
+                                Previous
                             </button>
                             <button
                                 (click)="onSubmit()"
